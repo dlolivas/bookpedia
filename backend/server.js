@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const error = require('./middlewares/errorMiddlewareHandler');
 const usersRoute = require('./routes/usersRoute');
+const bookRouter = require('./routes/bookRoutes');
 dotenv.config(); 
 require('./config/dbConnect')();
 
@@ -16,8 +17,12 @@ app.use(express.json());
 
 
 //routes will catch any usersRoute
+//Users
 app.use('/api/users' , usersRoute );
+app.use('/api/books' , bookRouter);
 console.log(process.env.MY_NAME);
+
+
 
 //catch exceptions error middleware 
 app.use(error.errorMiddlewareHandler); 
